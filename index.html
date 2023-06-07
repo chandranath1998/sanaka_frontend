@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <title>Contact Form</title>
+        <style>
+            body {
+              font-family: Arial, sans-serif;
+              margin: 0;
+              padding: 20px;
+              background-color: #f2f2f2;
+            }
+        
+            h1 {
+              margin-bottom: 20px;
+            }
+        
+            .form-container {
+              max-width: 500px;
+              margin: 0 auto;
+              background-color: #ffffff;
+              padding: 30px;
+              border-radius: 5px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+        
+            .form-container label {
+              display: block;
+              margin-bottom: 5px;
+              font-weight: bold;
+            }
+        
+            .form-container input,
+            .form-container select {
+              width: 100%;
+              padding: 10px;
+              margin-bottom: 15px;
+              border: 1px solid #ccc;
+              border-radius: 3px;
+              font-size: 16px;
+            }
+        
+            .form-container button {
+              padding: 10px 20px;
+              background-color: #4CAF50;
+              color: white;
+              border: none;
+              border-radius: 3px;
+              font-size: 16px;
+              cursor: pointer;
+            }
+        
+            .form-container button:hover {
+              background-color: #45a049;
+            }
+        
+            .error {
+              color: red;
+              margin-top: 5px;
+            }
+          </style>
+        
+        <!-- <style>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+          }
+      
+          h1 {
+            margin-bottom: 20px;
+          }
+      
+          label {
+            display: block;
+            margin-bottom: 5px;
+          }
+      
+          input,
+          select {
+            width: 300px;
+            padding: 5px;
+            margin-bottom: 10px;
+          }
+      
+          button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+          }
+      
+          button:hover {
+            background-color: #45a049;
+          }
+      
+          .error {
+            color: red;
+            margin-top: 5px;
+          }
+        </style> -->
+      </head>
+<body>
+        <h1>Contact Form</h1>
+        <div class="form-container">
+          <form id="contactForm">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" required>
+          
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" required>
+          
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+          
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" required>
+          
+            <label for="streamOf12th">Stream of 12th:</label>
+            <select id="streamOf12th">
+              <option value="Arts">Arts</option>
+              <option value="Science">Science</option>
+              <option value="Commerce">Commerce</option>
+            </select>
+          
+            <label for="courseApplied">Course Applied:</label>
+            <select id="courseApplied">
+              <option value="MBBS">MBBS</option>
+              <option value="PG">PG</option>
+              <option value="BSC.NURSING">BSC.NURSING</option>
+              <option value="DIPLOMA">DIPLOMA</option>
+              <option value="BE/B.TECH">BE/B.TECH</option>
+              <option value="GNM">GNM</option>
+            </select>
+          
+            <label for="branch">Branch:</label>
+            <select id="branch">
+              <option value="RADIOLOGY">RADIOLOGY</option>
+              <option value="MEDICINE">MEDICINE</option>
+              <option value="GYNOCOLOGY">GYNOCOLOGY</option>
+              <option value="PADEATRICS">PADEATRICS</option>
+              <option value="ORTHO">ORTHO</option>
+              <option value="ANESTHESIA">ANESTHESIA</option>
+              <option value="SURGERY">SURGERY</option>
+            </select>
+          
+            <label for="qualifiedEntranceExam">Qualified Entrance Exam:</label>
+            <select id="qualifiedEntranceExam">
+              <option value="APPEARD NEET UG">APPEARD NEET UG</option>
+              <option value="APPEARD NEET PG">APPEARD NEET PG</option>
+              <option value="APPEARD WBJEE">APPEARD WBJEE</option>
+              <option value="APPEARD JENPAUH">APPEARD JENPAUH</option>
+            </select>
+          
+            <label for="scoreOfQualifiedExam">Score of Qualified Exam:</label>
+            <input type="number" id="scoreOfQualifiedExam" required>
+          
+            <button type="submit">Submit</button>
+          </form>
+      
+          <div id="errorMessage" class="error"></div>
+        </div>
+
+  <script>
+    const contactForm = document.getElementById('contactForm');
+    const errorMessage = document.getElementById('errorMessage');
+
+    contactForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      // Get form values
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const streamOf12th = document.getElementById('streamOf12th').value;
+      const courseApplied = document.getElementById('courseApplied').value;
+      const branch = document.getElementById('branch').value;
+      const qualifiedEntranceExam = document.getElementById('qualifiedEntranceExam').value;
+      const scoreOfQualifiedExam = document.getElementById('scoreOfQualifiedExam').value;
+
+      // Perform client-side validation
+      if (!firstName || !lastName || !email || !phone || !streamOf12th || !courseApplied || !branch || !qualifiedEntranceExam || !scoreOfQualifiedExam) {
+        errorMessage.textContent = "All fields are required.";
+        return;
+      }
+
+      if (!/^[A-Za-z]+$/.test(firstName)) {
+        errorMessage.textContent = "Invalid first name - Should contain alphabets only and no spaces.";
+        return;
+      }
+
+      if (!/^[A-Za-z]+$/.test(lastName)) {
+        errorMessage.textContent = "Invalid last name - Should contain alphabets only and no spaces.";
+        return;
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errorMessage.textContent = "Invalid email - Should be in the format (abc@gmail.com)";
+        return;
+      }
+
+    //   if (!/^(1\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/.test(phone)) {
+    //     errorMessage.textContent = "Invalid phone number - Should be in the format (+91 your number)";
+    //     return;
+    //   }
+
+      // All validations passed, you can now submit the form
+      errorMessage.textContent = "";
+      submitForm();
+    });
+
+    function submitForm() {
+      // Retrieve form values and create a data object
+      const data = {
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        streamOf12th: document.getElementById('streamOf12th').value,
+        courseApplied: document.getElementById('courseApplied').value,
+        branch: document.getElementById('branch').value,
+        qualifiedEntranceExam: document.getElementById('qualifiedEntranceExam').value,
+        scoreOfQualifiedExam: document.getElementById('scoreOfQualifiedExam').value
+      };
+
+      // Send the data to the server using AJAX or fetch
+      fetch('http://localhost:5000/createContact', {
+        method: 'POST',
+        crossDomain : true,
+                headers: {
+                    "Content-Type" : "application/json",
+                    Accept : "application/json",
+                    "Access-Control-Allow-Origin" : "*",
+                },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(result => {
+          if (result.status === true) {
+            // Display success message
+            alert('Contact created successfully!');
+            // Reset the form
+            contactForm.reset();
+          } else {
+            // Display error message
+            errorMessage.textContent = result.Error;
+          }
+        })
+        .catch(error => {
+          // Display error message
+          errorMessage.textContent = error.message;
+        });
+    }
+  </script>
+</body>
+</html>
+
